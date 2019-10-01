@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCPPWrapper.a  CMakeFiles/CPPWrapper.dir/glm/glm_c_wrapper/glm_c_wrapper.cpp.o
+/usr/bin/ranlib libCPPWrapper.a

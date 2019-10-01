@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Panorama"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Panorama">
+				<Option output="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Panorama" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 Panorama"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Panorama/fast">
+				<Option output="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Panorama" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 Panorama/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/fastConfig/FastConfig.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/fastConfig/FastConfig.h">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/logging/List/List.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/logging/List/List.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/logging/Logger.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/logging/Logger.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/logging/syncQueue/syncQueue.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/fileIO/logging/syncQueue/syncQueue.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/gameCore/Game.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/gameCore/Game.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/gameProperties/GameProperties.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/gameProperties/GameProperties.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/glm_c_wrapper.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/glm_c_wrapper.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/matrices/Matrics.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/matrices/Matrics.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/operations/Sqrt.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/operations/Sqrt.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/vectors/Vectors.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/mathematics/vectors/Vectors.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/player/Player.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/game/player/Player.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/graphics/shaders/Shader.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/graphics/shaders/Shader.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/graphics/textures/Texture.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/graphics/textures/Texture.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/graphics/window/Window.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/graphics/window/Window.hpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/main.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/axiom/Desktop/KPI/_Workspace/Panorama/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

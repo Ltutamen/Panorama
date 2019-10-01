@@ -1,0 +1,4 @@
+[y:2019,m:8,d:9]:[15:29:15]{LOGGER MSG : logger started!}
+[y:2019,m:8,d:9]:[15:29:15]{OpenGL Version: }
+[y:2019,m:8,d:9]:[15:29:15]{4.5 (Core Profile) Mesa 19.0.8}
+[y:2019,m:8,d:9]:[15:29:15]{4.50}

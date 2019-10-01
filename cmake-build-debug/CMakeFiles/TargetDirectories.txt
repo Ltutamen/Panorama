@@ -1,0 +1,3 @@
+/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/CMakeFiles/Panorama.dir
+/home/axiom/Desktop/KPI/_Workspace/Panorama/cmake-build-debug/CMakeFiles/edit_cache.dir

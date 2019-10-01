@@ -1,0 +1,2 @@
+2 - openGl init error // void Game::openGlInit() in the: game/gameCore/Game.cpp
+3 - logger error // const char* SyncQueue::pop() in the: game/fileIO/logging/syncQueue/syncQueue.cpp

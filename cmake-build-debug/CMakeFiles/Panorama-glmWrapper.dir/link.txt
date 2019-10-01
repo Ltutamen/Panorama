@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -g   CMakeFiles/Panorama-glmWrapper.dir/glm/glm_c_wrapper/glm_c_wrapper.cpp.o  -o Panorama-glmWrapper 
