@@ -1,0 +1,3 @@
+/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/cmake-build-debug/CMakeFiles/Panorama.dir
+/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/cmake-build-debug/CMakeFiles/edit_cache.dir
