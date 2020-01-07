@@ -1,0 +1,2 @@
+133 - static logger instance is NULL
+134 - gameRunFlag asked before game intialisation

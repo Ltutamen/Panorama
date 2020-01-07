@@ -45,11 +45,28 @@ typedef struct {
 }GGame;
 
 
-typedef struct {
+class Game{
+public:
+
     GGRaph graph;
     GGame game;
 
-}Game;
+    static GLboolean* getRunFlagPtr();
+    static Game* getGame();
+
+    static void gameOpenGlInit(Game* game);
+
+    static GLboolean truePtr;
+
+private:
+
+    Game();
+    static Game* gameInstance;
+
+
+
+
+};
 
 
 Game* newGame(Vectornf* polys);

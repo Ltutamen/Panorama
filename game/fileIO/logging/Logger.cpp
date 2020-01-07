@@ -6,12 +6,23 @@
 #include <pthread.h>
 #include <GL/gl.h>
 #include "Logger.hpp"
+#include "../../gameCore/Game.hpp"
 
-void* runLogger( void* currentLogger );
-void destroyLogger(Logger* logger);
 
-Logger* newLogger(const char* filepath, unsigned char* runningFlag){
-    Logger* result = (Logger*)malloc(sizeof(Logger));
+Logger::SLogger* Logger::_logger = (Logger::SLogger*)nullptr;
+
+
+void Logger::log(const char* message) {
+    if(_logger == nullptr)
+        _logger = newLogger("default.log", Game::getRunFlagPtr());
+
+    logToFile(_logger, message);
+
+}
+
+
+Logger::SLogger* Logger::newLogger(const char* filepath, unsigned char* runningFlag){
+    SLogger* result = (SLogger*)malloc(sizeof(Logger));
     result->f = fopen(filepath, "wt");
     result->runningFlag = runningFlag;
     result->writingQueue = newSQueue();
@@ -21,19 +32,19 @@ Logger* newLogger(const char* filepath, unsigned char* runningFlag){
 }
 
 
-//  simply adds to queue messearge
-void logToFile(Logger* logger, const char* messearge){
+//  simply adds to queue message
+void Logger::logToFile(SLogger* logger, const char* message){
     if(logger == NULL)
         _exit(133);
 
-    putSQueue(logger->writingQueue, messearge);
+    putSQueue(logger->writingQueue, message);
 }
 
 
-void* runLogger( void* currentLogger){
-    Logger* logger = (Logger*)currentLogger;
+void* Logger::runLogger( void* currentLogger){
+    SLogger* logger = (SLogger*)currentLogger;
 
-    logToFile(logger, "LOGGER MSG : logger started!\0");
+    logToFile(logger, "<LOGGER MSG> : logger started!\0");
     while(  logger->writingQueue->head!=NULL || *((unsigned char*)logger->runningFlag) == GL_TRUE ){
        if(isNEmptyQueue(logger->writingQueue)){
            time_t now = time(0);
@@ -48,15 +59,15 @@ void* runLogger( void* currentLogger){
        }
     }
 
-    logToFile((Logger*)currentLogger, "LOGGER MSG : logger ended!\0");
+    logToFile((SLogger*)currentLogger, "LOGGER MSG : logger ended!\0");
     while(logger->writingQueue->head!=NULL);
-    destroyLogger((Logger*)currentLogger);
+    destroyLogger((SLogger*)currentLogger);
 
     return NULL;
 }
 
 
-void destroyLogger(Logger* logger){
+void Logger::destroyLogger(Logger::SLogger* logger) {
     if(logger == NULL)
         return;
 

@@ -14,6 +14,9 @@
 #include "../../graphics/window/Window.hpp"
 #include "../../graphics/textures/Texture.hpp"
 
+Game* Game::gameInstance = (Game*)(nullptr);
+GLboolean Game::truePtr = GL_TRUE;
+
 void runRender(Game* game);
 void runInput(Game* game);
 void destroyGame(Game* game);
@@ -28,7 +31,7 @@ long clocksPerUpdate;
 
 
 
-void gameOpenGlInit(Game* game);
+static void gameOpenGlInit(Game* game);
 GGame nGGame();
 GGRaph nGGraph();
 
@@ -40,7 +43,7 @@ Game* newGame(Vectornf* polys){
 
     game->graph.VertexArrayIDs = (GLuint*)malloc(sizeof(GLuint) * 50);
 
-    gameOpenGlInit(game);
+    Game::gameOpenGlInit(game);
 
     //uv buffer filling // todo autogen
     game->graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
@@ -66,7 +69,7 @@ GGame nGGame(){
     result.isRunning = GL_TRUE;
     result.gameProps.lastCycleTime = glfwGetTime();
     result.player = nPlayer();
-    result.logger = newLogger("currentLog.txt", &result.isRunning);
+    //  result.logger = newLogger("currentLog.txt", &result.isRunning);
 
     //  new
     result.world.addMesh(new Mesh(SKYBLOCK_SPHERE));
@@ -75,7 +78,7 @@ GGame nGGame(){
 }
 
 
-void gameOpenGlInit(Game* game){
+void Game::gameOpenGlInit(Game* game) {
     if (!glfwInit())
         exit(2);
 
@@ -91,19 +94,19 @@ void gameOpenGlInit(Game* game){
     game->graph.window = glfwCreateWindow(game->graph.winProperties.size.x, game->graph.winProperties.size.y, "Faust\0", NULL, NULL);
 
     if(!game->graph.window) {
-        logToFile(game->game.logger, "ERROR at glfwCreateWindow(...), window failed to create\0");
+        Logger::log("ERROR at glfwCreateWindow(...), window failed to create\0");
         exit(1);
     }
 
     glfwShowWindow(game->graph.window);
     glfwMakeContextCurrent(game->graph.window);
 
-    logToFile(game->game.logger, "OpenGL Version: \0");
-    logToFile(game->game.logger, (char*)glGetString(GL_VERSION));
-    logToFile(game->game.logger, (char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+    Logger::log("OpenGL Version: \0");
+    Logger::log((char*)glGetString(GL_VERSION));
+    Logger::log((char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
 
     if(glewInit() != GLEW_OK) {
-        logToFile(game->game.logger, "ERROR: glewInit() is not GLEW_OK in gameOpenGlinit()");
+        Logger::log("ERROR: glewInit() is not GLEW_OK in gameOpenGlinit()");
         exit(1);
     }
 
@@ -253,4 +256,63 @@ void destroyGame(Game* game){
 void GGRaph::addMesh(Mesh *mesh) {
 
 
+}
+
+
+GLboolean* Game::getRunFlagPtr() {
+    if(gameInstance == nullptr) {
+        //  _exit(134);
+        //  return ptr on TRUE to work while game is being intialized
+        return &Game::truePtr;
+    }
+
+    return &gameInstance->game.isRunning;
+}
+
+
+//  todo remove
+void fillPolys(float* polys){
+    polys[0] = 0.0f, polys[1] = 0.0f, polys[2] = 0.0f;       // a
+    polys[3] = 4000.0f, polys[4] = 4000.0f, polys[5] = 4000.0f;
+    polys[6] = 0.0f, polys[7] = 40.0f, polys[8] = 0.0f;
+    //
+    polys[9] = 40.0f, polys[10] = 40.0f, polys[11] = 40.0f;
+    polys[12] = 40.0f, polys[13] = 80.0f, polys[14] = 40.0f;
+    polys[15] = 40.0f, polys[16] = 40.0f, polys[17] = 400.0f;
+
+}
+
+
+Game::Game() {
+    Vectornf* polys = newVectornf(6 * 3);
+    fillPolys(polys->arr);
+    game = nGGame();
+    game.triaBuffer = polys;
+
+    graph.VertexArrayIDs = (GLuint*)malloc(sizeof(GLuint) * 50);
+
+    gameOpenGlInit(this);
+
+    //uv buffer filling // todo autogen
+    graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
+    graph.uvBuffer[0] = 0.01f; graph.uvBuffer[1] = 0.01f;
+    graph.uvBuffer[2] = 0.01f; graph.uvBuffer[3] = 0.01f;
+    graph.uvBuffer[4] = 0.01f; graph.uvBuffer[5] = 0.01f;
+
+    graph.uvBuffer[6] = 0.99f; graph.uvBuffer[7] = 0.99f;
+    graph.uvBuffer[8] = 0.99f; graph.uvBuffer[8] = 0.01f;
+    graph.uvBuffer[10] = 0.99f; graph.uvBuffer[11] = 0.01f;
+    glGenBuffers(1, &graph.uvbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, graph.uvbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(graph.uvBuffer), graph.uvBuffer, GL_STATIC_DRAW);
+
+}
+
+
+Game* Game::getGame() {
+    if(gameInstance == nullptr) {
+        gameInstance = new Game();
+    }
+
+    return gameInstance;
 }
