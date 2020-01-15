@@ -106,6 +106,12 @@
 		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/game/fileIO/logging/syncQueue/syncQueue.hpp">
 			<Option target="Panorama"/>
 		</Unit>
+		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/game/gameCore/GGraph.cpp">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/game/gameCore/GGraph.h">
+			<Option target="Panorama"/>
+		</Unit>
 		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/game/gameCore/Game.cpp">
 			<Option target="Panorama"/>
 		</Unit>
@@ -164,6 +170,9 @@
 			<Option target="Panorama"/>
 		</Unit>
 		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/graphics/mesh/Mesh.h">
+			<Option target="Panorama"/>
+		</Unit>
+		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/graphics/mesh/MeshMisc.h">
 			<Option target="Panorama"/>
 		</Unit>
 		<Unit filename="/home/myself/Desktop/Workspace/Projects/Code/C_CPP/Panorama/graphics/shaders/Shader.cpp">

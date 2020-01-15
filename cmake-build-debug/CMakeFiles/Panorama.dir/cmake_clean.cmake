@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Panorama.dir/game/fileIO/logging/List/List.cpp.o"
   "CMakeFiles/Panorama.dir/game/fileIO/logging/Logger.cpp.o"
   "CMakeFiles/Panorama.dir/game/fileIO/logging/syncQueue/syncQueue.cpp.o"
+  "CMakeFiles/Panorama.dir/game/gameCore/GGraph.cpp.o"
   "CMakeFiles/Panorama.dir/game/gameCore/Game.cpp.o"
   "CMakeFiles/Panorama.dir/game/gameCore/World/World.cpp.o"
   "CMakeFiles/Panorama.dir/game/gameCore/inputHandling/inputHandler.cpp.o"

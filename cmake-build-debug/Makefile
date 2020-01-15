@@ -231,6 +231,33 @@ game/fileIO/logging/syncQueue/syncQueue.cpp.s:
 	$(MAKE) -f CMakeFiles/Panorama.dir/build.make CMakeFiles/Panorama.dir/game/fileIO/logging/syncQueue/syncQueue.cpp.s
 .PHONY : game/fileIO/logging/syncQueue/syncQueue.cpp.s
 
+game/gameCore/GGraph.o: game/gameCore/GGraph.cpp.o
+
+.PHONY : game/gameCore/GGraph.o
+
+# target to build an object file
+game/gameCore/GGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/Panorama.dir/build.make CMakeFiles/Panorama.dir/game/gameCore/GGraph.cpp.o
+.PHONY : game/gameCore/GGraph.cpp.o
+
+game/gameCore/GGraph.i: game/gameCore/GGraph.cpp.i
+
+.PHONY : game/gameCore/GGraph.i
+
+# target to preprocess a source file
+game/gameCore/GGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/Panorama.dir/build.make CMakeFiles/Panorama.dir/game/gameCore/GGraph.cpp.i
+.PHONY : game/gameCore/GGraph.cpp.i
+
+game/gameCore/GGraph.s: game/gameCore/GGraph.cpp.s
+
+.PHONY : game/gameCore/GGraph.s
+
+# target to generate assembly for a file
+game/gameCore/GGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/Panorama.dir/build.make CMakeFiles/Panorama.dir/game/gameCore/GGraph.cpp.s
+.PHONY : game/gameCore/GGraph.cpp.s
+
 game/gameCore/Game.o: game/gameCore/Game.cpp.o
 
 .PHONY : game/gameCore/Game.o
@@ -630,6 +657,9 @@ help:
 	@echo "... game/fileIO/logging/syncQueue/syncQueue.o"
 	@echo "... game/fileIO/logging/syncQueue/syncQueue.i"
 	@echo "... game/fileIO/logging/syncQueue/syncQueue.s"
+	@echo "... game/gameCore/GGraph.o"
+	@echo "... game/gameCore/GGraph.i"
+	@echo "... game/gameCore/GGraph.s"
 	@echo "... game/gameCore/Game.o"
 	@echo "... game/gameCore/Game.i"
 	@echo "... game/gameCore/Game.s"
