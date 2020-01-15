@@ -33,7 +33,7 @@ long clocksPerUpdate;
 
 static void gameOpenGlInit(Game* game);
 GGame nGGame();
-GGRaph nGGraph();
+GGraph nGGraph();
 
 Game* newGame(Vectornf* polys){
     Game *game = (Game*)malloc(sizeof(Game));
@@ -72,7 +72,7 @@ GGame nGGame(){
     //  result.logger = newLogger("currentLog.txt", &result.isRunning);
 
     //  new
-    result.world.addMesh(new Mesh(SKYBLOCK_SPHERE));
+//      result.world.addMesh(new Mesh(SKYBLOCK_SPHERE));
 
     return result;
 }
@@ -248,12 +248,12 @@ void destroyGame(Game* game){
     for(int i=0 ; i<game->graph.takenVertexNumber ; ++i)
         glDeleteVertexArrays(1, &game->graph.VertexArrayIDs[i]);
 
-    glfwTerminate();
+    //  glfwTerminate();
 
 }
 
 
-void GGRaph::addMesh(Mesh *mesh) {
+void GGraph::addMesh(Mesh *mesh) {
 
 
 }

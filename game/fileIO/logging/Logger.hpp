@@ -5,8 +5,8 @@
 #ifndef PANORAMA_LOGGER_HPP
 #define PANORAMA_LOGGER_HPP
 
+#include <string>
 #include <bits/types/FILE.h>
-#include <zconf.h>
 #include "syncQueue/syncQueue.hpp"
 
 /*
@@ -25,6 +25,7 @@ void logToFile(Logger* logger, const char* messearge);
 class Logger {
 public:
     static void log(const char* message);
+    static void log(std::string message);
 
 private:
     typedef struct{

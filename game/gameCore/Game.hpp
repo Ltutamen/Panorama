@@ -14,7 +14,7 @@
 #include <GLFW/glfw3.h>
 
 
-class GGRaph {
+class GGraph {
 public:
     GLFWwindow* window;
     WindowProperties winProperties;
@@ -48,7 +48,7 @@ typedef struct {
 class Game{
 public:
 
-    GGRaph graph;
+    GGraph graph;
     GGame game;
 
     static GLboolean* getRunFlagPtr();

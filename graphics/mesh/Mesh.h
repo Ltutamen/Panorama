@@ -5,21 +5,34 @@
 #ifndef PANORAMA_MESH_H
 #define PANORAMA_MESH_H
 
+#include "MeshMisc.h"
+#include "../shaders/Shader.hpp"
+#include <vector>
+
 enum MESH_GENERATION_STRATEGY{SPHERE, SKYBLOCK_SPHERE};
+
 
 //  todo make interface
 class Mesh {
 public:
-    //  number of 3-dPOINTS in mesh, real size is 3 times bigger
-    unsigned long size;
-    double* elements;
+    /*  Mesh Data  */
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+    std::vector<Texture> textures;
+    unsigned int VAO;
 
-    virtual ~Mesh();
+    /*  Functions  */
+    // constructor
+    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
 
-    Mesh(MESH_GENERATION_STRATEGY strategy);
-
-
+    // render the mesh
+    void Draw(Shader shader);
 private:
+    /*  Render data  */
+    unsigned int VBO, EBO;
+    /*  Functions    */
+    // initializes all the buffer objects/arrays
+    void setupMesh();
 
 };
 

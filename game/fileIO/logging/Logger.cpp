@@ -71,8 +71,15 @@ void Logger::destroyLogger(Logger::SLogger* logger) {
     if(logger == NULL)
         return;
 
-    fclose(logger->f);
-    free(logger->f);
-    destroySQueue(logger->writingQueue);
+    fclose(_logger->f);
+    //  free(_logger->f);
+    destroySQueue(_logger->writingQueue);
+
+}
+
+
+void Logger::log(std::string message) {
+    const char* cs_message = message.c_str();
+    Logger::log(cs_message);
 
 }

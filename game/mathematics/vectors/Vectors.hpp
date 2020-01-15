@@ -1,13 +1,6 @@
 #ifndef _VECTORS_H_
 #define _VECTORS_H_
 
-#ifndef NULL
- #define NULL ((void *)0)
-#endif
-#ifndef nullptr
-    #define nullptr ((void *)0)
-#endif
-
 #include <stdint.h>
 
 //#define NEW_SPOSITION(xx,yy,zz,str) Position str;{str.x=(x),str.y=(y),str.z=(z);}

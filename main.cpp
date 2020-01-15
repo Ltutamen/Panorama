@@ -6,6 +6,7 @@ void fillPolys(float*);
 void fastConfTest();
 
 int main() {
+    Logger::log("game starts");
     Game* game = Game::getGame();
     gameLoop(game);
 
