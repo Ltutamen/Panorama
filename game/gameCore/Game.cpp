@@ -13,56 +13,18 @@
 
 #include "../../graphics/window/Window.hpp"
 #include "../../graphics/textures/Texture.hpp"
+#include "../mathematics/glm_c_wrapper.hpp"
 
 Game* Game::gameInstance = (Game*)(nullptr);
 GLboolean Game::truePtr = GL_TRUE;
 
-void runRender(Game* game);
-void runInput(Game* game);
-void destroyGame(Game* game);
-void initRender(Game* game);
-
-const uint targetFPS = 100;
-const uint targetUPS = 1;
-long clocksInSecond = 100;
 
 long clocksPerFrame;
 long clocksPerUpdate;
 
 
 
-static void gameOpenGlInit(Game* game);
-GGame nGGame();
-GGraph nGGraph();
-
-Game* newGame(Vectornf* polys){
-    Game *game = (Game*)malloc(sizeof(Game));
-
-    game->game = nGGame();
-    game->game.triaBuffer = polys;
-
-    game->graph.VertexArrayIDs = (GLuint*)malloc(sizeof(GLuint) * 50);
-
-    Game::gameOpenGlInit(game);
-
-    //uv buffer filling // todo autogen
-    game->graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
-    game->graph.uvBuffer[0] = 0.01f; game->graph.uvBuffer[1] = 0.01f;
-    game->graph.uvBuffer[2] = 0.01f; game->graph.uvBuffer[3] = 0.01f;
-    game->graph.uvBuffer[4] = 0.01f; game->graph.uvBuffer[5] = 0.01f;
-
-    game->graph.uvBuffer[6] = 0.99f; game->graph.uvBuffer[7] = 0.99f;
-    game->graph.uvBuffer[8] = 0.99f; game->graph.uvBuffer[8] = 0.01f;
-    game->graph.uvBuffer[10] = 0.99f; game->graph.uvBuffer[11] = 0.01f;
-    glGenBuffers(1, &game->graph.uvbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, game->graph.uvbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(game->graph.uvBuffer), game->graph.uvBuffer, GL_STATIC_DRAW);
-
-    return game;
-
-}
-
-
+//  todo remove
 GGame nGGame(){
     GGame result;
 
@@ -78,7 +40,42 @@ GGame nGGame(){
 }
 
 
-void Game::gameOpenGlInit(Game* game) {
+Game::Game() {
+    Vectornf* polys = newVectornf(6 * 3);
+    fillPolys(polys->arr);
+    game = nGGame();
+    game.triaBuffer = polys;
+
+    graph.VertexArrayIDs = (GLuint*)malloc(sizeof(GLuint) * 50);
+
+    gameOpenGlInit();
+
+    //uv buffer filling // todo autogen
+    graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
+    graph.uvBuffer[0] = 0.01f; graph.uvBuffer[1] = 0.01f;
+    graph.uvBuffer[2] = 0.01f; graph.uvBuffer[3] = 0.01f;
+    graph.uvBuffer[4] = 0.01f; graph.uvBuffer[5] = 0.01f;
+
+    graph.uvBuffer[6] = 0.99f; graph.uvBuffer[7] = 0.99f;
+    graph.uvBuffer[8] = 0.99f; graph.uvBuffer[8] = 0.01f;
+    graph.uvBuffer[10] = 0.99f; graph.uvBuffer[11] = 0.01f;
+    glGenBuffers(1, &graph.uvbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, graph.uvbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(graph.uvBuffer), graph.uvBuffer, GL_STATIC_DRAW);
+
+}
+
+
+void Game::initRender() {
+    Matrics4f model = Matrics4fVal(1.0f);
+    matrics4fMult(&graph.winProperties.view, &model);
+    matrics4fMult(&graph.winProperties.projection, &graph.winProperties.view);
+    graph.matrixID = glGetUniformLocation(graph.winProperties.program, "MVP");
+
+}
+
+
+void Game::gameOpenGlInit() {
     if (!glfwInit())
         exit(2);
 
@@ -89,17 +86,17 @@ void Game::gameOpenGlInit(Game* game) {
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
     glfwWindowHint(GLFW_VISIBLE, GL_TRUE);
 
-    game->graph.winProperties.size.x = 1280;
-    game->graph.winProperties.size.y = 800;
-    game->graph.window = glfwCreateWindow(game->graph.winProperties.size.x, game->graph.winProperties.size.y, "Faust\0", NULL, NULL);
+    graph.winProperties.size.x = 1280;
+    graph.winProperties.size.y = 800;
+    graph.window = glfwCreateWindow(graph.winProperties.size.x, graph.winProperties.size.y, "Faust\0", NULL, NULL);
 
-    if(!game->graph.window) {
+    if(!graph.window) {
         Logger::log("ERROR at glfwCreateWindow(...), window failed to create\0");
         exit(1);
     }
 
-    glfwShowWindow(game->graph.window);
-    glfwMakeContextCurrent(game->graph.window);
+    glfwShowWindow(graph.window);
+    glfwMakeContextCurrent(graph.window);
 
     Logger::log("OpenGL Version: \0");
     Logger::log((char*)glGetString(GL_VERSION));
@@ -110,30 +107,31 @@ void Game::gameOpenGlInit(Game* game) {
         exit(1);
     }
 
-    glfwSetInputMode(game->graph.window, GLFW_STICKY_KEYS, GL_TRUE);
+    glfwSetInputMode(graph.window, GLFW_STICKY_KEYS, GL_TRUE);
 
     //VAO initialization
-    glGenVertexArrays(1, &(game->graph.VertexArrayIDs[0]));
-    glBindVertexArray(game->graph.VertexArrayIDs[0]);
+    glGenVertexArrays(1, &(graph.VertexArrayIDs[0]));
+    glBindVertexArray(graph.VertexArrayIDs[0]);
 
     //Buffer Creation
-    glGenBuffers(1, &game->graph.vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, game->graph.vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * game->game.triaBuffer->len, game->game.triaBuffer->arr, GL_STATIC_DRAW);
+    glGenBuffers(1, &graph.vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, graph.vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * game.triaBuffer->len, game.triaBuffer->arr, GL_STATIC_DRAW);
 
-    game->graph.winProperties = newWindowProperties();
-    game->game.player = *newPlayer();
-    game->graph.matrixID = glGetUniformLocation(game->graph.winProperties.program, "MWP");
+    graph.winProperties = newWindowProperties();
+    game.player = *newPlayer();
+    graph.matrixID = glGetUniformLocation(graph.winProperties.program, "MWP");
 
-    glfwSetInputMode(game->graph.window, GLFW_STICKY_KEYS, GL_TRUE);
+    glfwSetInputMode(graph.window, GLFW_STICKY_KEYS, GL_TRUE);
 
-    game->graph.texture = loadBMP("../resources/text1.bmp");
-    game->graph.textureID = glGetUniformLocation(game->graph.winProperties.program, "exampleTexture");
+    graph.texture = loadBMP("../resources/text1.bmp");
+    graph.textureID = glGetUniformLocation(graph.winProperties.program, "exampleTexture");
 }
 
 
-void gameLoop(Game* game){
-    initRender(game);
+//  runs game loop
+void Game::run() {
+    initRender();
 
     clocksPerFrame = CLOCKS_PER_SEC/targetFPS;
     clocksPerUpdate = CLOCKS_PER_SEC/targetUPS;
@@ -145,7 +143,7 @@ void gameLoop(Game* game){
     int i = 0;
     long lag = 0;
 
-    while(game->game.isRunning == GL_TRUE){
+    while(game.isRunning == GL_TRUE){
 
         //  printf("\nLoop%i ", i);
 
@@ -167,98 +165,148 @@ void gameLoop(Game* game){
             lag -= clocksPerUpdateCycle;
             clocksPerUpdateCycle = clock()- current;
         }
-        runInput(game);
+        runInput();
         glfwPollEvents();
 
-        runRender(game);
+        runRender();
         usleep( (current+clocksPerFrame-clock()) > 0 ? (current+clocksPerFrame-clock()) : 0);
         i++;
 
-        if(glfwGetKey(game->graph.window, GLFW_KEY_ESCAPE ) == GLFW_PRESS &&
-           glfwWindowShouldClose(game->graph.window) != 0 )
-            game->game.isRunning = GL_FALSE;
+        if(glfwGetKey(graph.window, GLFW_KEY_ESCAPE ) == GLFW_PRESS &&
+           glfwWindowShouldClose(graph.window) != 0 )
+            game.isRunning = GL_FALSE;
 
     }
-
-    destroyGame(game);
-
 }
 
 
-void initRender(Game* game){
-    Matrics4f model = Matrics4fVal(1.0f);
-    matrics4fMult(&game->graph.winProperties.view, &model);
-    matrics4fMult(&game->graph.winProperties.projection, &game->graph.winProperties.view);
-    game->graph.matrixID = glGetUniformLocation(game->graph.winProperties.program, "MVP");
-
-}
-
-
-void runRender(Game* game){
+void Game::runRender() {
     //  putchar('r');
 
-    __glewClearBufferfv(GL_COLOR, 0, game->graph.winProperties.backColor);
+    __glewClearBufferfv(GL_COLOR, 0, graph.winProperties.backColor);
 
-    game->graph.winProperties.backColor[0] = 0.2;
-    game->graph.winProperties.backColor[1] = 0.1;
-    game->graph.winProperties.backColor[2] = (float)sin(((double)clock()/10) / 100000);
+    graph.winProperties.backColor[0] = 0.2;
+    graph.winProperties.backColor[1] = 0.1;
+    graph.winProperties.backColor[2] = (float)sin(((double)clock()/10) / 100000);
 
 
     /*
     //  todo debug
     printf("\nMatrix:\n");
     for(uint i=0 ; i<16 ; i++)
-        printf("%f %c", game->graph.winProperties.view.v[i], (i+1)%4 ? ' ' : '\n');
+        printf("%f %c", graph.winProperties.view.v[i], (i+1)%4 ? ' ' : '\n');
         */
 
 
-    glUseProgram(game->graph.winProperties.program);
+    glUseProgram(graph.winProperties.program);
 
-    glUniformMatrix4fv(game->graph.matrixID, 1, GL_FALSE, (float*)&game->graph.winProperties.view.v);
+    glUniformMatrix4fv(graph.matrixID, 1, GL_FALSE, (float*)&graph.winProperties.view.v);
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, game->graph.texture);
-    glUniform1i(game->graph.textureID, 0);
+    glBindTexture(GL_TEXTURE_2D, graph.texture);
+    glUniform1i(graph.textureID, 0);
 
 
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, game->graph.vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, graph.vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, game->graph.uvbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, graph.uvbuffer);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
 
-    glDrawArrays(GL_TRIANGLES, 0, (GLsizei)game->game.triaBuffer->len * 4);
+    glDrawArrays(GL_TRIANGLES, 0, (GLsizei)game.triaBuffer->len * 4);
     //  for()
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 
-    glfwSwapBuffers(game->graph.window);
+    glfwSwapBuffers(graph.window);
     glfwPollEvents();
 
 }
 
 
-void destroyGame(Game* game){
-    glDeleteBuffers(1, &game->graph.vertexBuffer);
-    glDeleteProgram(game->graph.winProperties.program);
-    glDeleteTextures(1, &game->graph.texture);
-    for(int i=0 ; i<game->graph.takenVertexNumber ; ++i)
-        glDeleteVertexArrays(1, &game->graph.VertexArrayIDs[i]);
+void Game::runInput() {
+    //consts
+    // todo: turn everything into radians
+    float mouseSens = 0.005f;
+    //  static double lastTime = glfwGetTime();
+
+    double currentTime = glfwGetTime();
+    float deltaTime = (float)(currentTime - game.gameProps.lastCycleTime);
+
+    //  MOUSE INPUT
+    double xpos, ypos;
+    glfwGetCursorPos(graph.window, &xpos, &ypos);
+    glfwSetCursorPos(graph.window, (float)graph.winProperties.size.x/2.0f, (float)graph.winProperties.size.y/2.0f);
+
+    //  player view angles
+    game.player.horizontalAngle += mouseSens * deltaTime * (float)(graph.winProperties.size.x/2.0f - xpos);
+    game.player.vertivalAngle += mouseSens * deltaTime * (float)(graph.winProperties.size.y/2.0f - ypos);
+
+    Vector3f direction = Vector3fVal(
+            cosf(game.player.vertivalAngle) * sinf(game.player.horizontalAngle),
+            sinf(game.player.vertivalAngle),
+            cosf(game.player.vertivalAngle) * cosf(game.player.horizontalAngle)
+    );
+
+    game.player.view.x = cosf(game.player.vertivalAngle) * sinf(game.player.horizontalAngle) + game.player.pos.x;
+    game.player.view.y = sinf(game.player.vertivalAngle) + game.player.pos.y;
+    game.player.view.z = cosf(game.player.horizontalAngle) * cosf(game.player.vertivalAngle) + game.player.pos.z;
+
+
+
+    Vector3f right = Vector3fVal(
+            sinf(game.player.horizontalAngle - (float)M_PI / 2.0f),
+            0.0f,
+            cosf(game.player.horizontalAngle - (float)M_PI / 2.0f)
+    );
+
+    Vector3f up = Vec3fCrossR(&right, &direction);
+
+
+
+    {//  read KEYBOARD INPUT
+        if (glfwGetKey(graph.window, GLFW_KEY_W) == GLFW_PRESS)
+            game.player.pos = vec3fAdd(&game.player.pos,
+                                       vec3fMulV(&direction, deltaTime * game.player.speed));
+        if (glfwGetKey(graph.window, GLFW_KEY_S) == GLFW_PRESS)
+            game.player.pos = vec3fSub(game.player.pos,
+                                       vec3fMulV(&direction, deltaTime * game.player.speed));
+        if (glfwGetKey(graph.window, GLFW_KEY_A) == GLFW_PRESS)
+            game.player.pos = vec3fAdd(&game.player.pos,
+                                       vec3fMulV(&right, deltaTime * game.player.speed));
+        if (glfwGetKey(graph.window, GLFW_KEY_D) == GLFW_PRESS)
+            game.player.pos = vec3fSub(game.player.pos,
+                                       vec3fMulV(&right, deltaTime * game.player.speed));
+        if (glfwGetKey(graph.window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            game.isRunning = GL_FALSE;
+    }
+
+    Matrics4f projection;
+
+    getPerspectiveMatrix_Wrapper(projection.v, game.player.initialFOV, (float)graph.winProperties.size.x / graph.winProperties.size.y, 0.01f, 10245.f);
+    getViewMatrix_Wrapper(graph.winProperties.view.v,&game.player.pos, &game.player.view, &up, projection.v);
+
+
+    game.gameProps.lastCycleTime = currentTime;
+
+}
+
+
+Game::~Game(){
+    glDeleteBuffers(1, &graph.vertexBuffer);
+    glDeleteProgram(graph.winProperties.program);
+    glDeleteTextures(1, &graph.texture);
+    for(int i=0 ; i<graph.takenVertexNumber ; ++i)
+        glDeleteVertexArrays(1, &graph.VertexArrayIDs[i]);
 
     //  glfwTerminate();
 
 }
 
-
-void GGraph::addMesh(Mesh *mesh) {
-
-
-}
-
-
+//  misc
 GLboolean* Game::getRunFlagPtr() {
     if(gameInstance == nullptr) {
         //  _exit(134);
@@ -271,7 +319,7 @@ GLboolean* Game::getRunFlagPtr() {
 
 
 //  todo remove
-void fillPolys(float* polys){
+void Game::fillPolys(float* polys){
     polys[0] = 0.0f, polys[1] = 0.0f, polys[2] = 0.0f;       // a
     polys[3] = 4000.0f, polys[4] = 4000.0f, polys[5] = 4000.0f;
     polys[6] = 0.0f, polys[7] = 40.0f, polys[8] = 0.0f;
@@ -283,32 +331,7 @@ void fillPolys(float* polys){
 }
 
 
-Game::Game() {
-    Vectornf* polys = newVectornf(6 * 3);
-    fillPolys(polys->arr);
-    game = nGGame();
-    game.triaBuffer = polys;
-
-    graph.VertexArrayIDs = (GLuint*)malloc(sizeof(GLuint) * 50);
-
-    gameOpenGlInit(this);
-
-    //uv buffer filling // todo autogen
-    graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
-    graph.uvBuffer[0] = 0.01f; graph.uvBuffer[1] = 0.01f;
-    graph.uvBuffer[2] = 0.01f; graph.uvBuffer[3] = 0.01f;
-    graph.uvBuffer[4] = 0.01f; graph.uvBuffer[5] = 0.01f;
-
-    graph.uvBuffer[6] = 0.99f; graph.uvBuffer[7] = 0.99f;
-    graph.uvBuffer[8] = 0.99f; graph.uvBuffer[8] = 0.01f;
-    graph.uvBuffer[10] = 0.99f; graph.uvBuffer[11] = 0.01f;
-    glGenBuffers(1, &graph.uvbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, graph.uvbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(graph.uvBuffer), graph.uvBuffer, GL_STATIC_DRAW);
-
-}
-
-
+//  static singleton
 Game* Game::getGame() {
     if(gameInstance == nullptr) {
         gameInstance = new Game();

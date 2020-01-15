@@ -12,13 +12,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="540705d3-a44d-4ba2-8f97-ebd52d57735e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game/fileIO/logging/exitStatuses.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game/gameCore/GGraph.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game/gameCore/GGraph.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/fileIO/logging/Logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/game/fileIO/logging/Logger.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/fileIO/logging/Logger.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/game/fileIO/logging/Logger.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/fileIO/fastConfig/FastConfig.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/fileIO/fastConfig/FastConfig.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/fileIO/logging/Logger.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/fileIO/logging/Logger.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/gameCore/Game.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/gameCore/Game.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/gameCore/World/World.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/gameCore/World/World.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/gameCore/inputHandling/inputHandler.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/gameCore/inputHandling/inputHandler.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/mathematics/glm_c_wrapper.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/mathematics/glm_c_wrapper.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/mathematics/matrices/Matrics.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/mathematics/matrices/Matrics.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/mathematics/vectors/Vectors.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/mathematics/vectors/Vectors.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/player/Player.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/game/player/Player.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/graphics/mesh/Mesh.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/graphics/mesh/Mesh.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/graphics/shaders/Shader.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/graphics/shaders/Shader.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/graphics/window/Window.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/graphics/window/Window.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Panorama.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Panorama.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Panorama.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/gameCore/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/game/gameCore/Game.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/gameCore/Game.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/game/gameCore/Game.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/gameCore/inputHandling/inputHandler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/game/gameCore/inputHandling/inputHandler.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,8 +172,27 @@
       <workItem from="1577379909628" duration="13327000" />
       <workItem from="1577629833426" duration="11000" />
       <workItem from="1578125561207" duration="1538000" />
-      <workItem from="1578406488232" duration="7833000" />
+      <workItem from="1578406488232" duration="8305000" />
+      <workItem from="1578575054062" duration="6092000" />
+      <workItem from="1578673981192" duration="4197000" />
+      <workItem from="1578842045044" duration="7962000" />
+      <workItem from="1579118028653" duration="3854000" />
     </task>
+    <task id="LOCAL-00001" summary="moved logger into singleton&#10;moved game and gameptr into singleton">
+      <created>1578415946024</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578415946024</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactoring">
+      <created>1579118875059</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1579118875059</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -163,59 +207,72 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.fs" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="moved logger into singleton&#10;moved game and gameptr into singleton" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="664" y="328" width="586" height="389" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578406620538">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
     <state x="664" y="328" width="586" height="389" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578406620538" />
-    <state x="726" y="241" width="462" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1578410271087">
+    <state x="726" y="241" width="462" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1578849660090">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state x="726" y="241" width="462" height="562" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578410271087" />
+    <state x="726" y="241" width="462" height="562" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578849660090" />
     <state x="718" y="228" key="#xdebugger.evaluate" timestamp="1578414497242">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
     <state x="718" y="228" key="#xdebugger.evaluate/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578414497242" />
-    <state width="1878" height="203" key="GridCell.Tab.0.bottom" timestamp="1578415861683">
+    <state x="493" y="120" width="927" height="804" key="CommitChangelistDialog2" timestamp="1579118874561">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="203" key="GridCell.Tab.0.bottom/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415861683" />
-    <state width="1878" height="203" key="GridCell.Tab.0.center" timestamp="1578415861683">
+    <state x="493" y="120" width="927" height="804" key="CommitChangelistDialog2/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1579118874561" />
+    <state width="1878" height="272" key="GridCell.Tab.0.bottom" timestamp="1579122343013">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="203" key="GridCell.Tab.0.center/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415861683" />
-    <state width="1878" height="203" key="GridCell.Tab.0.left" timestamp="1578415861682">
+    <state width="1878" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1579122343013" />
+    <state width="1878" height="272" key="GridCell.Tab.0.center" timestamp="1579122343013">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="203" key="GridCell.Tab.0.left/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415861682" />
-    <state width="1878" height="203" key="GridCell.Tab.0.right" timestamp="1578415861683">
+    <state width="1878" height="272" key="GridCell.Tab.0.center/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1579122343013" />
+    <state width="1878" height="272" key="GridCell.Tab.0.left" timestamp="1579122343012">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="203" key="GridCell.Tab.0.right/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415861683" />
-    <state width="1878" height="420" key="GridCell.Tab.1.bottom" timestamp="1578415859123">
+    <state width="1878" height="272" key="GridCell.Tab.0.left/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1579122343012" />
+    <state width="1878" height="272" key="GridCell.Tab.0.right" timestamp="1579122343013">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="420" key="GridCell.Tab.1.bottom/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415859123" />
-    <state width="1878" height="420" key="GridCell.Tab.1.center" timestamp="1578415859122">
+    <state width="1878" height="272" key="GridCell.Tab.0.right/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1579122343013" />
+    <state width="1878" height="420" key="GridCell.Tab.1.bottom" timestamp="1578587974767">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="420" key="GridCell.Tab.1.center/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415859122" />
-    <state width="1878" height="420" key="GridCell.Tab.1.left" timestamp="1578415859122">
+    <state width="1878" height="420" key="GridCell.Tab.1.bottom/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578587974767" />
+    <state width="1878" height="420" key="GridCell.Tab.1.center" timestamp="1578587974767">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="420" key="GridCell.Tab.1.left/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415859122" />
-    <state width="1878" height="420" key="GridCell.Tab.1.right" timestamp="1578415859123">
+    <state width="1878" height="420" key="GridCell.Tab.1.center/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578587974767" />
+    <state width="1878" height="420" key="GridCell.Tab.1.left" timestamp="1578587974767">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state width="1878" height="420" key="GridCell.Tab.1.right/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578415859123" />
-    <state x="1106" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1577629836688">
+    <state width="1878" height="420" key="GridCell.Tab.1.left/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578587974767" />
+    <state width="1878" height="420" key="GridCell.Tab.1.right" timestamp="1578587974767">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
-    <state x="1106" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1577629836688" />
+    <state width="1878" height="420" key="GridCell.Tab.1.right/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578587974767" />
+    <state x="1106" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1579118033692">
+      <screen x="0" y="0" width="1920" height="1043" />
+    </state>
+    <state x="1106" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1579118033692" />
     <state x="614" y="140" width="686" height="764" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578411887331">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
     <state x="614" y="140" width="686" height="764" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578411887331" />
+    <state x="737" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578416016198">
+      <screen x="0" y="0" width="1920" height="1043" />
+    </state>
+    <state x="737" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1043/0.0.1920.1043@0.0.1920.1043" timestamp="1578416016198" />
     <state x="960" y="0" width="960" height="1043" key="dock-window-1" timestamp="1577433458051">
       <screen x="0" y="0" width="1920" height="1043" />
     </state>
@@ -233,19 +290,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/game/mathematics/matrices/Matrics.cpp</url>
-          <line>175</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/game/gameCore/inputHandling/inputHandler.cpp</url>
-          <line>29</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/game/gameCore/Game.cpp</url>
-          <line>261</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/game/fileIO/logging/Logger.cpp</url>
+          <line>70</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

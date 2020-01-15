@@ -11,28 +11,11 @@
 #include "../../graphics/window/Window.hpp"
 #include "../fileIO/logging/Logger.hpp"
 #include "World/World.h"
+#include "GGraph.h"
 #include <GLFW/glfw3.h>
 
 
-class GGraph {
-public:
-    GLFWwindow* window;
-    WindowProperties winProperties;
-    GLint matrixID;
-
-    GLuint texture;
-    GLint textureID;
-    GLfloat* uvBuffer;
-    GLuint uvbuffer;
-
-    GLuint* VertexArrayIDs;
-    int takenVertexNumber = 0;
-    GLuint vertexBuffer;
-
-    void addMesh(Mesh* mesh);
-};
-
-
+//  todo refactor
 typedef struct {
     GLboolean isRunning;
     Player player;
@@ -45,32 +28,45 @@ typedef struct {
 }GGame;
 
 
+
 class Game{
 public:
-
-    GGraph graph;
-    GGame game;
-
+    //  returns ptr to the runFlag
     static GLboolean* getRunFlagPtr();
     static Game* getGame();
 
-    static void gameOpenGlInit(Game* game);
+    //  graphical content of the game
+    GGraph graph;
 
+    GGame game;
+    //  always points at some GLBoolean true value
     static GLboolean truePtr;
+
+    //  runs game loop
+    void run();
+
+    ~Game();
+
+    static const uint targetFPS = 100;
+    static const uint targetUPS = 1;
+    static const long clocksInSecond = 100;
 
 private:
 
     Game();
+
     static Game* gameInstance;
+    void gameOpenGlInit();
 
+    //  todo remove
+    void fillPolys(float* polys);
 
-
+    void runRender();
+    void initRender();
+    void runInput();
 
 };
 
-
-Game* newGame(Vectornf* polys);
-void gameLoop(Game* game);
 
 
 #endif //PANORAMA_GAME_HPP

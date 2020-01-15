@@ -7,6 +7,6 @@
 
 #include "../Game.hpp"
 
-void runInput(Game* game);
+
 
 #endif //PANORAMA_INPUTHANDLER_HPP
