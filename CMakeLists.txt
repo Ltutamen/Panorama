@@ -44,7 +44,7 @@ add_executable(Panorama
         graphics/textures/Texture.hpp
         game/mathematics/glm_c_wrapper.hpp
         game/mathematics/glm_c_wrapper.cpp
-        game/fileIO/fastConfig/FastConfig.cpp game/fileIO/fastConfig/FastConfig.h graphics/mesh/Mesh.cpp graphics/mesh/Mesh.h game/gameCore/World/World.cpp game/gameCore/World/World.h graphics/mesh/MeshMisc.h game/gameCore/GGraph.cpp game/gameCore/GGraph.h)
+        game/fileIO/fastConfig/FastConfig.cpp game/fileIO/fastConfig/FastConfig.h graphics/mesh/Mesh.cpp graphics/mesh/Mesh.h game/gameCore/World/World.cpp game/gameCore/World/World.h graphics/mesh/MeshMisc.h game/gameCore/GGraph.cpp game/gameCore/GGraph.h game/gameCore/GGame.cpp game/gameCore/GGame.h)
 
 
 target_link_libraries(Panorama m -lpthread)

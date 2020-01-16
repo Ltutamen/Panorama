@@ -7,19 +7,22 @@
 
 #include "../mathematics/vectors/Vectors.hpp"
 
-typedef struct {
+class Player {
+public:
+    Player();
     Vector3f pos;
 
+    //  todo inherit from camera
     Vector3f view;
     float horizontalAngle;
     float vertivalAngle;
     float initialFOV;
+    //  todo inherit from entity
     float speed;
     float mouseSpeed;
 
-}Player;
+};
 
-Player* newPlayer();
-Player nPlayer();
+
 
 #endif //DYNAMICOCTTREE_CI_PLAYER_H

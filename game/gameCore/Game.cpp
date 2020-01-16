@@ -24,26 +24,10 @@ long clocksPerUpdate;
 
 
 
-//  todo remove
-GGame nGGame(){
-    GGame result;
-
-    result.isRunning = GL_TRUE;
-    result.gameProps.lastCycleTime = glfwGetTime();
-    result.player = nPlayer();
-    //  result.logger = newLogger("currentLog.txt", &result.isRunning);
-
-    //  new
-//      result.world.addMesh(new Mesh(SKYBLOCK_SPHERE));
-
-    return result;
-}
-
-
-Game::Game() {
+Game::Game() : game() {
     Vectornf* polys = newVectornf(6 * 3);
     fillPolys(polys->arr);
-    game = nGGame();
+    //  game = nGGame();
     game.triaBuffer = polys;
 
     graph.VertexArrayIDs = (GLuint*)malloc(sizeof(GLuint) * 50);
@@ -119,7 +103,7 @@ void Game::gameOpenGlInit() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * game.triaBuffer->len, game.triaBuffer->arr, GL_STATIC_DRAW);
 
     graph.winProperties = newWindowProperties();
-    game.player = *newPlayer();
+
     graph.matrixID = glGetUniformLocation(graph.winProperties.program, "MWP");
 
     glfwSetInputMode(graph.window, GLFW_STICKY_KEYS, GL_TRUE);
