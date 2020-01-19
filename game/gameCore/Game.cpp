@@ -122,20 +122,11 @@ void Game::run() {
     clocksPerUpdate = CLOCKS_PER_SEC/targetUPS;
     long clocksPerUpdateCycle = 0;
 
-    printf("\n Clocks per sec %d", (int)CLOCKS_PER_SEC);
-
     long previous = clock() - clocksPerFrame;
     int i = 0;
     long lag = 0;
 
     while(game.isRunning == GL_TRUE) {
-
-        printf("\n\nLoop%d \n", i);
-        for(int i=0 ; i<4 ; ++i) {
-            for(int j = 0 ; j<4 ; ++j)
-                printf("%.3lf\t", graph.winProperties.view[i][j]);
-            putchar('\n');
-        }
 
         long current = clock();
         long elapsed = current - previous;
@@ -259,7 +250,6 @@ void Game::runInput() {
     glm::vec3 up = glm::cross(right, direction);
 
 
-
     {//  read KEYBOARD INPUT
         if (glfwGetKey(graph.window, GLFW_KEY_W) == GLFW_PRESS)
             game.player.addPosition(direction * deltaTime * game.player.movementSpeedMultiplier);
@@ -280,10 +270,6 @@ void Game::runInput() {
     glm::mat4 viewMatrix = glm::lookAt(game.player.getPos(), game.player.getPos() + direction, up);
 
     graph.winProperties.view = projection * viewMatrix * model;
-
-    printf("\nnpoz %.2lf + %.2lf %.2lf \n dire %.2lf + %.2lf %.2lf \n",
-            game.player.getPos().x, game.player.getPos().y, game.player.getPos().z,
-            up.x, up.y, up.z);
 
     /*
     Matrics4f projection;
