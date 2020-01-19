@@ -7,9 +7,9 @@
 
 
 #include <GL/glew.h>
-#include "../player/Player.hpp"
 #include "../gameProperties/GameProperties.hpp"
 #include "World/World.h"
+#include "../gameWorld/movingThings/player/Player.hpp"
 
 class GGame {
 public:

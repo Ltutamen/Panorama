@@ -2,12 +2,8 @@
 // Created by axiom on 8/14/19.
 //
 
-#include "glm_c_wrapper.hpp"
-
-
 #include "../../thirdParties/glm/glm/glm.hpp"
 #include "../../thirdParties/glm/glm/gtc/matrix_transform.hpp"
-#include "vectors/Vectors.hpp"
 
 using namespace glm;
 
@@ -24,14 +20,14 @@ void getPerspectiveMatrix_Wrapper(float* result, float FOV, float ratio, float n
 }
 
 
-void getViewMatrix_Wrapper(float* result, Vector3f* eye, Vector3f* view, Vector3f* head, float* perspectiveM){
+void getViewMatrix_Wrapper(float* result, glm::vec3 eye, glm::vec3 view, glm::vec3 head, float* perspectiveM){
 
     glm::mat4 Model = glm::mat4(1.f);
 
     glm::mat4 View = glm::lookAt(
-            glm::vec3(eye->x, eye->y, eye->z),
-            glm::vec3(view->x, view->y, view->z),
-            glm::vec3(head->x, head->y, head->z));
+            glm::vec3(eye.x, eye.y, eye.z),
+            glm::vec3(view.x, view.y, view.z),
+            glm::vec3(head.x, head.y, head.z));
 
     glm::mat4 Perspective = glm::mat4(perspectiveM[0], perspectiveM[1], perspectiveM[2], perspectiveM[3],
                           perspectiveM[4], perspectiveM[5], perspectiveM[6], perspectiveM[7],

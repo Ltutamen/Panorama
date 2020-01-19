@@ -31,13 +31,13 @@ typedef struct {
     double x;
     double y;
     double z;
-}Vector3d;
+} Vector3d;
 
 typedef struct{
     float x;
     float y;
     float z;
-}Vector3f;
+} Vector3f;
 
 typedef struct {
     uint x;
@@ -49,8 +49,8 @@ typedef Vector3f Position;
 typedef Vector3f Color;
 
 
-Vector3f* newVector3f(const float a, const float b, const float c);
-Vector3f Vector3fVal(const float a, const float b, const float c);
+Vector3f* newVector3f(float a, float b, float c);
+Vector3f Vector3fVal(float a, float b, float c);
 
 void vec3fNormalize(Vector3f* arg);
 

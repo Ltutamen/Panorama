@@ -6,17 +6,19 @@
 #define PANORAMA_GAME_HPP
 
 
-#include "../player/Player.hpp"
-#include "../gameProperties/GameProperties.hpp"
 #include "../../graphics/window/Window.hpp"
 #include "../fileIO/logging/Logger.hpp"
 #include "World/World.h"
 #include "GGraph.h"
+#include "../gameWorld/movingThings/player/Player.hpp"
+#include "../gameProperties/GameProperties.hpp"
+
 #include <GLFW/glfw3.h>
 
 
 //  todo refactor
-typedef struct {
+class GGame {
+public:
     GLboolean isRunning;
     Player player;
     GameProperties gameProps;
@@ -25,7 +27,7 @@ typedef struct {
 
     //  new
     World world;
-}GGame;
+};
 
 
 

@@ -8,6 +8,7 @@
 #include <GL/gl.h>
 #include <GLFW/glfw3.h>
 #include "../../game/mathematics/matrices/Matrics.hpp"
+#include "../../thirdParties/glm/glm/glm.hpp"
 
 typedef struct {
     GLFWwindow* window;
@@ -17,9 +18,9 @@ typedef struct {
 
     GLfloat backColor[4];
 
-    Matrics4f model;
-    Matrics4f projection;
-    Matrics4f view;
+    glm::mat4 model;
+    glm::mat4 projection;
+    glm::mat4 view;
 
     GLuint program;
 

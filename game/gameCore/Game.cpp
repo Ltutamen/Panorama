@@ -14,6 +14,7 @@
 #include "../../graphics/window/Window.hpp"
 #include "../../graphics/textures/Texture.hpp"
 #include "../mathematics/glm_c_wrapper.hpp"
+#include "../../thirdParties/glm/glm/gtc/matrix_transform.hpp"
 
 Game* Game::gameInstance = (Game*)(nullptr);
 GLboolean Game::truePtr = GL_TRUE;
@@ -37,12 +38,12 @@ Game::Game() : game() {
     //uv buffer filling // todo autogen
     graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
     graph.uvBuffer[0] = 0.01f; graph.uvBuffer[1] = 0.01f;
-    graph.uvBuffer[2] = 0.01f; graph.uvBuffer[3] = 0.01f;
-    graph.uvBuffer[4] = 0.01f; graph.uvBuffer[5] = 0.01f;
+    graph.uvBuffer[2] = 0.01f; graph.uvBuffer[3] = 0.98f;
+    graph.uvBuffer[4] = 0.98f; graph.uvBuffer[5] = 0.98f;
 
     graph.uvBuffer[6] = 0.99f; graph.uvBuffer[7] = 0.99f;
     graph.uvBuffer[8] = 0.99f; graph.uvBuffer[8] = 0.01f;
-    graph.uvBuffer[10] = 0.99f; graph.uvBuffer[11] = 0.01f;
+    graph.uvBuffer[10] = 0.01f; graph.uvBuffer[11] = 0.01f;
     glGenBuffers(1, &graph.uvbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, graph.uvbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(graph.uvBuffer), graph.uvBuffer, GL_STATIC_DRAW);
@@ -51,9 +52,9 @@ Game::Game() : game() {
 
 
 void Game::initRender() {
-    Matrics4f model = Matrics4fVal(1.0f);
-    matrics4fMult(&graph.winProperties.view, &model);
-    matrics4fMult(&graph.winProperties.projection, &graph.winProperties.view);
+    glm::mat4 model(1.f);
+    graph.winProperties.view *= model;
+    graph.winProperties.projection *= graph.winProperties.view;
     graph.matrixID = glGetUniformLocation(graph.winProperties.program, "MVP");
 
 }
@@ -127,9 +128,14 @@ void Game::run() {
     int i = 0;
     long lag = 0;
 
-    while(game.isRunning == GL_TRUE){
+    while(game.isRunning == GL_TRUE) {
 
-        //  printf("\nLoop%i ", i);
+        printf("\n\nLoop%d \n", i);
+        for(int i=0 ; i<4 ; ++i) {
+            for(int j = 0 ; j<4 ; ++j)
+                printf("%.3lf\t", graph.winProperties.view[i][j]);
+            putchar('\n');
+        }
 
         long current = clock();
         long elapsed = current - previous;
@@ -184,7 +190,7 @@ void Game::runRender() {
 
     glUseProgram(graph.winProperties.program);
 
-    glUniformMatrix4fv(graph.matrixID, 1, GL_FALSE, (float*)&graph.winProperties.view.v);
+    glUniformMatrix4fv(graph.matrixID, 1, GL_FALSE, (float*)&graph.winProperties.view);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, graph.texture);
@@ -221,57 +227,70 @@ void Game::runInput() {
     float deltaTime = (float)(currentTime - game.gameProps.lastCycleTime);
 
     //  MOUSE INPUT
-    double xpos, ypos;
-    glfwGetCursorPos(graph.window, &xpos, &ypos);
+    double xPos, yPos;
+    glfwGetCursorPos(graph.window, &xPos, &yPos);
     glfwSetCursorPos(graph.window, (float)graph.winProperties.size.x/2.0f, (float)graph.winProperties.size.y/2.0f);
 
     //  player view angles
-    game.player.horizontalAngle += mouseSens * deltaTime * (float)(graph.winProperties.size.x/2.0f - xpos);
-    game.player.vertivalAngle += mouseSens * deltaTime * (float)(graph.winProperties.size.y/2.0f - ypos);
+    game.player.horizontalAngle += mouseSens * deltaTime * (float)(graph.winProperties.size.x/2.0f - xPos);
+    game.player.verticalAngle += mouseSens * deltaTime * (float)(graph.winProperties.size.y/2.0f - yPos);
 
-    Vector3f direction = Vector3fVal(
-            cosf(game.player.vertivalAngle) * sinf(game.player.horizontalAngle),
-            sinf(game.player.vertivalAngle),
-            cosf(game.player.vertivalAngle) * cosf(game.player.horizontalAngle)
+    glm::vec3 direction = glm::vec3(
+            cosf(game.player.verticalAngle) * sinf(game.player.horizontalAngle),
+            sinf(game.player.verticalAngle),
+            cosf(game.player.verticalAngle) * cosf(game.player.horizontalAngle)
     );
 
-    game.player.view.x = cosf(game.player.vertivalAngle) * sinf(game.player.horizontalAngle) + game.player.pos.x;
-    game.player.view.y = sinf(game.player.vertivalAngle) + game.player.pos.y;
-    game.player.view.z = cosf(game.player.horizontalAngle) * cosf(game.player.vertivalAngle) + game.player.pos.z;
+    game.player.view = direction;
 
 
+/*
+    game.player.view.x = cosf(game.player.verticalAngle) * sinf(game.player.horizontalAngle) + game.player.getPos().x;
+    game.player.view.y = sinf(game.player.verticalAngle) + game.player.getPos().y;
+    game.player.view.z = cosf(game.player.horizontalAngle) * cosf(game.player.verticalAngle) + game.player.getPos().z;
+*/
 
-    Vector3f right = Vector3fVal(
+    glm::vec3 right = glm::vec3(
             sinf(game.player.horizontalAngle - (float)M_PI / 2.0f),
             0.0f,
             cosf(game.player.horizontalAngle - (float)M_PI / 2.0f)
     );
 
-    Vector3f up = Vec3fCrossR(&right, &direction);
+    glm::vec3 up = glm::cross(right, direction);
 
 
 
     {//  read KEYBOARD INPUT
         if (glfwGetKey(graph.window, GLFW_KEY_W) == GLFW_PRESS)
-            game.player.pos = vec3fAdd(&game.player.pos,
-                                       vec3fMulV(&direction, deltaTime * game.player.speed));
+            game.player.addPosition(direction * deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_S) == GLFW_PRESS)
-            game.player.pos = vec3fSub(game.player.pos,
-                                       vec3fMulV(&direction, deltaTime * game.player.speed));
+            game.player.addPosition(-1.f * direction * deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_A) == GLFW_PRESS)
-            game.player.pos = vec3fAdd(&game.player.pos,
-                                       vec3fMulV(&right, deltaTime * game.player.speed));
+            game.player.addPosition(right *  deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_D) == GLFW_PRESS)
-            game.player.pos = vec3fSub(game.player.pos,
-                                       vec3fMulV(&right, deltaTime * game.player.speed));
+            game.player.addPosition( -1.f * right * deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             game.isRunning = GL_FALSE;
     }
 
+    glm::mat4 model(1.f);
+
+    glm::mat4 projection = glm::perspective(glm::radians(game.player.initialFOV), 1280.0f / 800.0f, 0.01f, 10245.0f);
+
+    glm::mat4 viewMatrix = glm::lookAt(game.player.getPos(), game.player.getPos() + direction, up);
+
+    graph.winProperties.view = projection * viewMatrix * model;
+
+    printf("\nnpoz %.2lf + %.2lf %.2lf \n dire %.2lf + %.2lf %.2lf \n",
+            game.player.getPos().x, game.player.getPos().y, game.player.getPos().z,
+            up.x, up.y, up.z);
+
+    /*
     Matrics4f projection;
 
     getPerspectiveMatrix_Wrapper(projection.v, game.player.initialFOV, (float)graph.winProperties.size.x / graph.winProperties.size.y, 0.01f, 10245.f);
-    getViewMatrix_Wrapper(graph.winProperties.view.v,&game.player.pos, &game.player.view, &up, projection.v);
+    getViewMatrix_Wrapper(&graph.winProperties.view.v[0], game.player.getPos(), game.player.view, up, &projection.v[0]);
+     */
 
 
     game.gameProps.lastCycleTime = currentTime;

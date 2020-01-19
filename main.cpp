@@ -1,5 +1,4 @@
 #include "game/gameCore/Game.hpp"
-#include <cstdio>
 
 
 int main() {
@@ -8,7 +7,5 @@ int main() {
     game->run();
 
     delete game;
-
-    printf("Hello, World!\n");
     return 0;
 }

@@ -16,8 +16,8 @@ add_executable(Panorama
         main.cpp
         game/gameCore/Game.cpp
         game/gameCore/Game.hpp
-        game/player/Player.cpp
-        game/player/Player.hpp
+        game/gameWorld/movingThings/player/Player.cpp
+        game/gameWorld/movingThings/player/Player.hpp
         game/gameProperties/GameProperties.cpp
         game/gameProperties/GameProperties.hpp
         game/mathematics/matrices/Matrics.cpp
@@ -26,8 +26,8 @@ add_executable(Panorama
         game/mathematics/operations/Sqrt.hpp
         game/mathematics/vectors/Vectors.cpp
         game/mathematics/vectors/Vectors.hpp
-        game/player/Player.cpp
-        game/player/Player.hpp
+        game/gameWorld/movingThings/player/Player.cpp
+        game/gameWorld/movingThings/player/Player.hpp
         graphics/window/Window.cpp
         graphics/window/Window.hpp
         graphics/shaders/Shader.cpp
@@ -38,13 +38,21 @@ add_executable(Panorama
         game/fileIO/logging/List/List.hpp
         game/fileIO/logging/syncQueue/syncQueue.cpp
         game/fileIO/logging/syncQueue/syncQueue.hpp
-        game/gameCore/inputHandling/inputHandler.cpp
-        game/gameCore/inputHandling/inputHandler.hpp
         graphics/textures/Texture.cpp
         graphics/textures/Texture.hpp
         game/mathematics/glm_c_wrapper.hpp
         game/mathematics/glm_c_wrapper.cpp
-        game/fileIO/fastConfig/FastConfig.cpp game/fileIO/fastConfig/FastConfig.h graphics/mesh/Mesh.cpp graphics/mesh/Mesh.h game/gameCore/World/World.cpp game/gameCore/World/World.h graphics/mesh/MeshMisc.h game/gameCore/GGraph.cpp game/gameCore/GGraph.h game/gameCore/GGame.cpp game/gameCore/GGame.h)
+        game/fileIO/fastConfig/FastConfig.cpp
+        game/fileIO/fastConfig/FastConfig.h
+        graphics/mesh/Mesh.cpp
+        graphics/mesh/Mesh.h
+        game/gameCore/World/World.cpp
+        game/gameCore/World/World.h
+        graphics/mesh/MeshMisc.h
+        game/gameCore/GGraph.cpp
+        game/gameCore/GGraph.h
+        game/gameCore/GGame.cpp
+        game/gameCore/GGame.h game/gameWorld/movingThings/Entity.cpp game/gameWorld/movingThings/Entity.h game/gameWorld/movingThings/Point.h)
 
 
 target_link_libraries(Panorama m -lpthread)
