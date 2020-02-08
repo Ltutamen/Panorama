@@ -10,15 +10,15 @@
 
 struct Vertex {
     // position
-    glm::vec3 Position;
+    glm::vec3 position;
     // normal
-    glm::vec3 Normal;
+    glm::vec3 normal;
     // texCoords
-    glm::vec2 TexCoords;
-    // tangent
-    glm::vec3 Tangent;
-    // bitangent
-    glm::vec3 Bitangent;
+    glm::vec2 texCoords;
+    //  tangent
+    glm::vec3 tangent;
+    //  bitangent
+    glm::vec3 bitangent;
 };
 
 struct Texture {

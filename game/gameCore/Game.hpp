@@ -19,6 +19,8 @@
 //  todo refactor
 class GGame {
 public:
+    GGame();
+
     GLboolean isRunning;
     Player player;
     GameProperties gameProps;

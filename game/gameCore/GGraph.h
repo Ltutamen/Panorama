@@ -8,13 +8,19 @@
 #include <GLFW/glfw3.h>
 #include "../../graphics/mesh/Mesh.h"
 #include "../../graphics/window/Window.hpp"
+#include "../../graphics/model/Model.h"
 
 
 class GGraph {
 public:
+    GGraph();
+
     GLFWwindow* window;
     WindowProperties winProperties;
     GLint matrixID;
+
+    Shader shader;
+    Model model;
 
     GLuint texture;
     GLint textureID;
@@ -25,6 +31,6 @@ public:
     int takenVertexNumber = 0;
     GLuint vertexBuffer;
 
-    void addMesh(Mesh* mesh);
+
 };
 #endif //PANORAMA_GGRAPH_H

@@ -1,6 +1,15 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.12.0)
 project(Panorama CXX)
+add_definitions(-Wall -O2 -fexceptions)
 
+set(THIRD_PARTIES ${CMAKE_SOURCE_DIR}/thirdParties)
+
+#   set(BSF_DIRECTORY ${THIRD_PARTIES}/bsf)
+message(${THIRD_PARTIES})
+
+#   include(${BSF_DIRECTORY}/Source/CMake/ProjectDefaults.cmake)
+include_directories(thirdParties/assimp/include)
+include_directories(thirdParties/stb)
 
 set(PROJECT_NAME Panorama)
 
@@ -9,6 +18,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 find_package(GLEW REQUIRED)
+find_package(ASSIMP REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIRS})
 
@@ -52,13 +62,29 @@ add_executable(Panorama
         game/gameCore/GGraph.cpp
         game/gameCore/GGraph.h
         game/gameCore/GGame.cpp
-        game/gameCore/GGame.h game/gameWorld/movingThings/Entity.cpp game/gameWorld/movingThings/Entity.h game/gameWorld/movingThings/Point.h)
+        game/gameCore/GGame.h
+        game/gameWorld/movingThings/Entity.cpp
+        game/gameWorld/movingThings/Entity.h
+        game/gameWorld/movingThings/Point.h
+        graphics/model/Model.cpp
+        graphics/model/Model.h
+        graphics/camera/Camera.cpp
+        graphics/camera/Camera.h
+        game/gameWorld/movingThings/FixedEntity.cpp
+        game/gameWorld/movingThings/FixedEntity.h)
 
+message(${ASSIMP_LIBRARIES})
 
 target_link_libraries(Panorama m -lpthread)
 target_link_libraries(Panorama glfw)
 target_link_libraries(Panorama GLEW)
 target_link_libraries(Panorama GL)
+target_link_libraries(Panorama assimp)
+target_link_libraries(Panorama ${ASSIMP_LIBRARIES}/assimp)
 
+#   target_link_libraries(Panorama bsf)
+#   add_engine_dependencies(Panorama)
+#   add_dependencies(Panorama bsfFBXImporter bsfFontImporter bsfFreeImgImporter)
+#   install_dll_on_build(Panorama ${BSF_DIRECTORY})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

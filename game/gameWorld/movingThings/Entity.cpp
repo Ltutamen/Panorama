@@ -19,3 +19,7 @@ void Entity::addSpeedMod(std::function<glm::vec3(float)> positionFunction) {
 void Entity::addPosition(glm::vec3 posToAdd) {
     this->position += posToAdd;
 }
+
+glm::vec3 Entity::getPos() {
+    return position;
+}

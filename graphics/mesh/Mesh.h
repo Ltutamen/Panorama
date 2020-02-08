@@ -19,17 +19,19 @@ public:
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;
-    unsigned int VAO;
+    //  unsigned int VAO;
 
     /*  Functions  */
     // constructor
-    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
+    Mesh(std::vector<Vertex> vertices,
+            std::vector<unsigned int> indices,
+            std::vector<Texture> textures);
 
     // render the mesh
     void Draw(Shader shader);
 private:
     /*  Render data  */
-    unsigned int VBO, EBO;
+    unsigned int VAO, VBO, EBO;
     /*  Functions    */
     // initializes all the buffer objects/arrays
     void setupMesh();

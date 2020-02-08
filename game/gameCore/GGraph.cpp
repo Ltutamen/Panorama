@@ -4,7 +4,9 @@
 
 #include "GGraph.h"
 
-void GGraph::addMesh(Mesh *mesh) {
 
+GGraph::GGraph() :
+    shader("graphics/shaders/fragment001.fs", "graphics/shaders/vertex001.vs"),
+    model("resources/models/obj/Only_Spider_with_Animations_Export.obj") {
 
 }

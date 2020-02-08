@@ -29,7 +29,7 @@ WindowProperties newWindowProperties(){
 
     window.model = glm::mat4(1.f);
 
-    window.program = makeShaderProgram("../graphics/shaders/fragment001.fs",
-                                       "../graphics/shaders/vertex001.vs");
+    window.program = makeShaderProgram(std::string("../graphics/shaders/fragment001.fs"),
+                                       std::string("../graphics/shaders/vertex001.vs"));
     return window;
 }

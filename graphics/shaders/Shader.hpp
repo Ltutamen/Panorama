@@ -16,7 +16,7 @@
 #include "../../game/fileIO/logging/Logger.hpp"
 
 
-GLuint makeShaderProgram(char* fregmentFPath, char* vertexFPath);
+GLuint makeShaderProgram(std::string fregmentFPath, std::string vertexFPath);
 
 
 class Shader {

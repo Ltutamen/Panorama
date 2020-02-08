@@ -11,6 +11,10 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 #include "../../graphics/window/Window.hpp"
 #include "../../graphics/textures/Texture.hpp"
 #include "../mathematics/glm_c_wrapper.hpp"
@@ -35,6 +39,7 @@ Game::Game() : game() {
 
     gameOpenGlInit();
 
+
     //uv buffer filling // todo autogen
     graph.uvBuffer = (GLfloat*)malloc(sizeof(GLfloat) * 2 * 6);
     graph.uvBuffer[0] = 0.01f; graph.uvBuffer[1] = 0.01f;
@@ -44,9 +49,12 @@ Game::Game() : game() {
     graph.uvBuffer[6] = 0.99f; graph.uvBuffer[7] = 0.99f;
     graph.uvBuffer[8] = 0.99f; graph.uvBuffer[8] = 0.01f;
     graph.uvBuffer[10] = 0.01f; graph.uvBuffer[11] = 0.01f;
+
     glGenBuffers(1, &graph.uvbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, graph.uvbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(graph.uvBuffer), graph.uvBuffer, GL_STATIC_DRAW);
+
+    game.isRunning = GL_TRUE;
 
 }
 
@@ -111,6 +119,8 @@ void Game::gameOpenGlInit() {
 
     graph.texture = loadBMP("../resources/text1.bmp");
     graph.textureID = glGetUniformLocation(graph.winProperties.program, "exampleTexture");
+
+    glfwSetCursorPos(graph.window, (float)graph.winProperties.size.x/2.0f, (float)graph.winProperties.size.y/2.0f);
 }
 
 
@@ -122,12 +132,13 @@ void Game::run() {
     clocksPerUpdate = CLOCKS_PER_SEC/targetUPS;
     long clocksPerUpdateCycle = 0;
 
+
     long previous = clock() - clocksPerFrame;
     int i = 0;
     long lag = 0;
 
-    while(game.isRunning == GL_TRUE) {
 
+    while(*getRunFlagPtr() == GL_TRUE) {
         long current = clock();
         long elapsed = current - previous;
         previous = current;
@@ -165,10 +176,14 @@ void Game::runRender() {
     //  putchar('r');
 
     __glewClearBufferfv(GL_COLOR, 0, graph.winProperties.backColor);
+    __glewClearBufferfv(GL_DEPTH, 0, nullptr);
 
     graph.winProperties.backColor[0] = 0.2;
     graph.winProperties.backColor[1] = 0.1;
     graph.winProperties.backColor[2] = (float)sin(((double)clock()/10) / 100000);
+    printf("%lf %lf\n",
+            gameInstance->game.player.horizontalAngle,
+           gameInstance->game.player.verticalAngle);
 
 
     /*
@@ -177,6 +192,21 @@ void Game::runRender() {
     for(uint i=0 ; i<16 ; i++)
         printf("%f %c", graph.winProperties.view.v[i], (i+1)%4 ? ' ' : '\n');
         */
+
+
+    /*
+     ourShader.use();
+     ourShader.setMat4("projection", projection);
+     ourShader.setMat4("view", view);
+
+
+     glm::mat4 model = glm::mat4(1.f);
+
+     ourShader.setMat4("model", model);
+     ourModel.Draw(ourShader);
+
+
+     */
 
 
     glUseProgram(graph.winProperties.program);
@@ -201,6 +231,7 @@ void Game::runRender() {
     //  for()
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
+
 
     glfwSwapBuffers(graph.window);
     glfwPollEvents();
@@ -255,9 +286,9 @@ void Game::runInput() {
             game.player.addPosition(direction * deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_S) == GLFW_PRESS)
             game.player.addPosition(-1.f * direction * deltaTime * game.player.movementSpeedMultiplier);
-        if (glfwGetKey(graph.window, GLFW_KEY_A) == GLFW_PRESS)
-            game.player.addPosition(right *  deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_D) == GLFW_PRESS)
+            game.player.addPosition(right *  deltaTime * game.player.movementSpeedMultiplier);
+        if (glfwGetKey(graph.window, GLFW_KEY_A) == GLFW_PRESS)
             game.player.addPosition( -1.f * right * deltaTime * game.player.movementSpeedMultiplier);
         if (glfwGetKey(graph.window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             game.isRunning = GL_FALSE;

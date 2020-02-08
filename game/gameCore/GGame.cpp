@@ -7,7 +7,7 @@
 
 
 //  todo remove
-GGame::GGame() : player() {
+GGame::GGame() : player(glm::vec3()) {
 
     this->isRunning = GL_TRUE;
     this->gameProps.lastCycleTime = glfwGetTime();

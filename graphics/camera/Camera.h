@@ -7,8 +7,9 @@
 
 
 #include <GL/gl.h>
-#include "../thirdParties/glm/glm/vec3.hpp"
-#include "../thirdParties/glm/glm/glm.hpp"
+#include "../../thirdParties/glm/glm/vec3.hpp"
+#include "../../thirdParties/glm/glm/glm.hpp"
+#include "../../game/gameWorld/movingThings/FixedEntity.h"
 
 class Camera {
 public:
@@ -20,12 +21,8 @@ public:
 
 
     // Camera Attributes
-    glm::vec3* Position;
-    glm::vec3 Front;
-    glm::vec3 Up;
-    glm::vec3 Right;
-    glm::vec3 WorldUp;
-    // Euler Angles
+    FixedEntity* entity;
+
     float Yaw;
     float Pitch;
     // Camera options
@@ -33,10 +30,10 @@ public:
     float MouseSensitivity;
     float Zoom;
 
-    Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
+    Camera(FixedEntity* fPoint, float yaw = YAW, float pitch = PITCH);
 
 
-    Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
+    //  Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
 
     glm::mat4 GetViewMatrix();
 

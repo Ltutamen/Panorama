@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "Shader.hpp"
 
-GLchar* getShaderFile(char* filepath);
+GLchar* getShaderFile(const char* filepath);
 const GLint* strLen(const char* str);
 
 
@@ -25,7 +25,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     vShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
     fShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
     gShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
-    try {
+    __try {
         // open files
         vShaderFile.open(vertexPath);
         fShaderFile.open(fragmentPath);
@@ -48,7 +48,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
             geometryCode = gShaderStream.str();
         }
     }
-    catch (std::ifstream::failure e) {
+    __catch (std::ifstream::failure e) {
         std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
     }
     const char* vShaderCode = vertexCode.c_str();
@@ -176,12 +176,12 @@ void Shader::checkCompileErrors(GLuint shader, const char* type) {
     }
 }
 
-GLuint makeShaderProgram(char* fragmentFPath, char* vertexFPath){
+GLuint makeShaderProgram(std::string fragmentFPath, std::string vertexFPath){
 
-    GLchar* verShSource = getShaderFile(vertexFPath);
+    GLchar* verShSource = getShaderFile(vertexFPath.c_str());
     //printf("%s ", verShSource);
 
-    GLchar* fragShSource = getShaderFile(fragmentFPath);
+    GLchar* fragShSource = getShaderFile(fragmentFPath.c_str());
     //printf("%s ", fragShSource);
 
     GLuint vertexShaderID = __glewCreateShader(GL_VERTEX_SHADER);
@@ -226,7 +226,7 @@ GLuint makeShaderProgram(char* fragmentFPath, char* vertexFPath){
 }
 
 
-GLchar* getShaderFile(char* filepath){
+GLchar* getShaderFile(const char* filepath){
     FILE* f = fopen(filepath, "rt");
     if(!f) {
         fopen(filepath, "a+");

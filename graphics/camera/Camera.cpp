@@ -3,28 +3,19 @@
 //
 
 #include "Camera.h"
-#include "../thirdParties/glm/glm/gtc/matrix_transform.hpp"
+#include "../../thirdParties/glm/glm/gtc/matrix_transform.hpp"
 
-Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
-    Position = position;
-    WorldUp = up;
+Camera::Camera(FixedEntity* fEntity, float yaw, float pitch) : MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
+    this->entity = fEntity;
     Yaw = yaw;
     Pitch = pitch;
     updateCameraVectors();
 }
 
-// Constructor with scalar values
-Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
-    Position = glm::vec3(posX, posY, posZ);
-    WorldUp = glm::vec3(upX, upY, upZ);
-    Yaw = yaw;
-    Pitch = pitch;
-    updateCameraVectors();
-}
 
 // Returns the view matrix calculated using Euler Angles and the LookAt Matrix
 glm::mat4 Camera::GetViewMatrix() {
-    return glm::lookAt(Position, Position + Front, Up);
+    return glm::lookAt(entity->getPos(), entity->getPos() + entity->front, entity->up);
 }
 
 /*
@@ -82,8 +73,8 @@ void Camera::updateCameraVectors() {
     front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
     front.y = sin(glm::radians(Pitch));
     front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-    Front = glm::normalize(front);
+    entity->front = glm::normalize(front);
     // Also re-calculate the Right and Up vector
-    Right = glm::normalize(glm::cross(Front, WorldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-    Up    = glm::normalize(glm::cross(Right, Front));
+    entity->right = glm::normalize(glm::cross(entity->front, entity->worldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+    entity->up    = glm::normalize(glm::cross(entity->right, entity->front));
 }
